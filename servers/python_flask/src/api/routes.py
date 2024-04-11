@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from src.api import bp
 import json
-
+import src.utils.validate_date as utils
 
 # TODO: 'lambingState'-> change key, should be more generic in DB, allowing the to be more diverse  
 
@@ -18,6 +18,11 @@ temp_data_points =[
 ]
 
 
+def calculate_dates_of_gestation():
+    pass
+    
+
+
 
 @bp.route("/")
 def show():
@@ -29,17 +34,17 @@ def show():
 def sheep_gestation():
     incoming_event = request.args.get('event')
     chosen_date = request.args.get('date')
-
-    print('incoming_event', incoming_event)
+    
     # want to take temp_date_points and only have an array of events
     event_list = [x['event'] for x in temp_data_points]
 
 
-    if incoming_event is None :
+    if incoming_event is None or incoming_event not in event_list:
         return f'add url param = {event_list}'
 
-    if chosen_date is None:
-        
-        return 'choose a date  "YYYY-MM-DD"'
+    if chosen_date is None or not utils.validate_date(chosen_date):
+        return 'choose a "date" = "YYYY-MM-DD"'
+
+    print("time to calculate gestation")
 
     return f'{incoming_event} chosen date {chosen_date}'
