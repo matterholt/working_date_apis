@@ -1,8 +1,16 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
-def validate_date(date_text):
+
+def validate_date(date_text: str):
+    """
+    Validate a date string in the format 'YYYY-MM-DD'.
+    Returns a datetime object if the date is valid, False otherwise.
+    """
     try:
-        datetime.strptime(date_text, '%Y-%m-%d')
+        parsed_date = datetime.strptime(date_text, '%Y-%m-%d')
     except ValueError:
         return False
-    return True
+    return parsed_date
+
+
+
