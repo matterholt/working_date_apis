@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 def calculate_gestation_date(data, reference_date):
     """Calculate the gestation date based on the state and days to."""
-    state = data['lambing_state']
+    state = data['event_state']
     days_to = data['daysTo']
 
     if state == 'present':
