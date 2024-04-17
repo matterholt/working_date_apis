@@ -1,11 +1,13 @@
-from flask import Flask
-from flask import request
-from src.api import bp
+from src.features import bp
 from flask import jsonify
 # make it better 
 from src.utils.validate_date import validate_date
 from src.utils.calculate_date_gestation import calculate_gestation_date 
 
+
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, url_for
+)
 # import validate_date from the utils file
 
 
@@ -23,6 +25,10 @@ temp_data_points =[
     {"event":"replacement ewes", "daysTo": 101 , "event_state":'post'},
 ]
 
+def gestation_events():
+    return [x['event'] for x in temp_data_points]
+
+
 
 
 @bp.route("/")
@@ -31,8 +37,9 @@ def show():
 
 
 
-@bp.route("/sheep/gestation")
-def sheep_gestation():
+
+@bp.route("/sheep/gestation/prams")
+def sheep_gestation_prams():
     incoming_event = request.args.get('event')
     chosen_date =  validate_date(request.args.get('date'))
 
@@ -52,4 +59,35 @@ def sheep_gestation():
         events_with_dates.append({ "event":db_item['event'], 'event_state': db_item['event_state'], 'date': calculated_date.strftime("%Y-%m-%d")})
 
 
-    return jsonify({"data": events_with_dates})
+    return jsonify({"data": events_with_dates})  
+
+@bp.route("/sheep/gestation", methods=('GET', 'POST'))
+def sheep_gestation():
+
+    if request.method == 'POST':
+        print ("this is a post")
+        print(request.form)
+        incoming_event = request.form['event']
+        chosen_date = request.form['date']
+
+        # API   
+        # if request.get_json():
+        #     request_data = request.get_json()
+        #     incoming_event = request_data['event']
+        #     chosen_date = request_data['date']
+
+        print({"incoming_event": incoming_event, "chosen_date": chosen_date})
+        return "<p>from the gestation selections</p>"
+
+
+
+
+    # want to take temp_date_points and only have an array of events
+    event_list = gestation_events()
+    default_event = 'lambing'
+
+    return render_template('from_event_date.html', event_list=event_list, default_event=default_event)
+
+
+
+      

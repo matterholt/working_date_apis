@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from src.api import bp as api_bp
+from src.features import bp as features_bp
 
 
 
@@ -25,7 +25,7 @@ def create_app(test_config=None):
     
 
     # Register blueprints here
-    app.register_blueprint(api_bp, url_prefix='/api')
+    app.register_blueprint(features_bp, url_prefix='/features')
 
 
     @app.route('/')

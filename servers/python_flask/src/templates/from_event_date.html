@@ -1,0 +1,15 @@
+<form method="post">
+  <label for="events">Gestation Event</label>
+  <select id="events">
+    {% for event in event_list %} {% if event == default_event %}
+    <option value="{{ event }}" selected>{{ event }}</option>
+    {% else %}
+    <option value="{{ event }}">{{ event }}</option>
+    {% endif %} {% endfor %}
+  </select>
+
+  <label for="date">date</label>
+  <input name="date" id="date" type="date" required />
+
+  <input type="submit" value="send" />
+</form>
