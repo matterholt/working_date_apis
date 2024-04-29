@@ -1,0 +1,35 @@
+{
+    "pets": [
+      {
+        "name": "Buddy",
+        "species": "Dog",
+        "age": 5,
+        "color": "Golden",
+        "owner": {
+          "name": "Alice",
+          "address": "123 Main St"
+        }
+      },
+      {
+        "name": "Whiskers",
+        "species": "Cat",
+        "age": 3,
+        "color": "Tabby",
+        "owner": {
+          "name": "Bob",
+          "address": "456 Elm St"
+        }
+      },
+      {
+        "name": "Fluffy",
+        "species": "Rabbit",
+        "age": 1,
+        "color": "White",
+        "owner": {
+          "name": "Charlie",
+          "address": "789 Oak St"
+        }
+      }
+    ]
+  }
+  

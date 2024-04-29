@@ -2,11 +2,25 @@
 
 get more familiar working with backends tech. 
 
-## GOAL
+## TASKS  
 
-### Stage 1
+1. basic routing
 
-send a date as a url param, and will return the dates that are associated with the path
+2. path params
+
+3. query params
+
+
+
+1. send a date as a url param, and will return the dates that are associated with the path
+
+2. multiple routes
+
+3. create a REST API
+
+4. return static files html/css/js
+
+5. 
 
 ## FLASK
 
@@ -23,9 +37,25 @@ send a date as a url param, and will return the dates that are associated with t
 .../api/sheep/gestation?event=lambing?date=2
 
 
+## FastAPI
+
+- build in tool, redoc,self documentation, pydatic
+- order matters
+- pre declared paths, use python Enum
+    - if the path is something that the developer know and has coded it. oppose to a name or sime other information that the user could place in. 
+- a param that has a path to some thing else in the api, OpenAPI does not support but FastAPI is able to handle the request
+    - internal tool 'Starlette' -> declare param with "...:path" 
+- has error checks and autocompletion, 
+- able to parse data that sends and recieves
+- built in data validation
+- automated doc and annotations
 
 
+### extra routes for understanding api
 
+- http://127.0.0.1:8000/docs
+- http://127.0.0.1:8000/redoc
+- http://127.0.0.1:8000/openapi.json
 
 
 
